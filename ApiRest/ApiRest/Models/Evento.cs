@@ -14,11 +14,11 @@ namespace ProyectoFinal.Models
         //como es un poco + complejo con otras clases, lo comento
         //public Materia Materia { get; set; }
         //public TipoEvento Tipo { get; set; }
-        public int Materia { get; set; }
-        public int Tipo { get; set; }
+        public string  Materia { get; set; }
+        public string Tipo { get; set; }
         public DateTime Fecha { get; set; }
         public string Descripcion { get; set; }
-            string dire = @"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=Z:\Proyecto\ApiRest\BaseDeDatos.mdb";
+            string dire = @"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=D:\Users\42038123\Documents\GitHub\Proyecto\ApiRest\BaseDeDatos.mdb";
         public List<Evento> ObtenerEventos()
         {
             OleDbConnection Con = new OleDbConnection();
@@ -32,10 +32,10 @@ namespace ProyectoFinal.Models
             while (drEventos.Read()){
                 Evento MiEvento = new Evento();
                 MiEvento.Id = Convert.ToInt32(drEventos["Id"]);
-                MiEvento.Materia = Convert.ToInt32(drEventos["IdMateria"]);
-                MiEvento.Tipo = Convert.ToInt32(drEventos["IdTipo"]);
                 MiEvento.Fecha = Convert.ToDateTime(drEventos["Fecha"]);
                 MiEvento.Descripcion = drEventos["Descripcion"].ToString();
+                MiEvento.Materia = (drEventos["NombreMateria"]).ToString();
+                MiEvento.Tipo = (drEventos["NombreTipo"]).ToString();
                 ListaEventos.Add(MiEvento);
             }
             return ListaEventos;
@@ -107,10 +107,10 @@ namespace ProyectoFinal.Models
             while (drEventos.Read())
             {
                 MiEvento.Id = Convert.ToInt32(drEventos["Id"]);
-                MiEvento.Materia = Convert.ToInt32(drEventos["IdMateria"]);
-                MiEvento.Tipo = Convert.ToInt32(drEventos["IdTipo"]);
                 MiEvento.Fecha = Convert.ToDateTime(drEventos["Fecha"]);
                 MiEvento.Descripcion = drEventos["Descripcion"].ToString();
+                MiEvento.Materia =(drEventos["IdMateria"]).ToString();
+                MiEvento.Tipo = (drEventos["IdTipo"]).ToString();
             }
             return MiEvento;
         }

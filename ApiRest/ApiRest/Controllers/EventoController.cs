@@ -21,6 +21,7 @@ namespace ProyectoFinal.Controllers
         {            
             this.repositorioEvento = new RepositorioEvento();
         }
+
         public List<Evento> Get()
         {
             List<Evento> Lista = new List<Evento>();
